@@ -19,6 +19,7 @@ specifiers:
   daisyui: ^2.51.5
   eslint: ^8.36.0
   eslint-config-next: ^13.2.4
+  lucide-react: ^0.144.0
   next: ^13.2.4
   next-auth: ^4.21.0
   postcss: ^8.4.21
@@ -41,6 +42,7 @@ dependencies:
   '@trpc/react-query': 10.20.0_5fs7tzxxsvejrgme5avwzwpub4
   '@trpc/server': 10.20.0
   daisyui: 2.51.5_j7yt3jd32cwenjqavrrga47yr4
+  lucide-react: 0.144.0_react@18.2.0
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
   react: 18.2.0
@@ -1941,6 +1943,14 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /lucide-react/0.144.0_react@18.2.0:
+    resolution: {integrity: sha512-smxwRsaHL9YZxzv4rPWDYJUKGJTCwZxjWMvClS6NBv9qIrYDHIIQdGRcM1pS7mnzUY5dXdIwyHDD0sk3hep/1Q==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}

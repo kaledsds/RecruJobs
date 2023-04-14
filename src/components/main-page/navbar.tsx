@@ -3,7 +3,7 @@ import { navItem } from "~/config/main-page-config";
 
 const Navbar: React.FC = () => {
   return (
-    <header className="navbar bg-base-200 px-24 py-4">
+    <header className="navbar fixed left-0 top-0 z-10 bg-base-200 bg-transparent px-24 py-4">
       <div className="flex-1">
         <Link href="/" className="btn-ghost btn text-xl normal-case">
           RecruJobs
