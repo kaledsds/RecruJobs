@@ -15,7 +15,7 @@ const HeroSection = () => {
             haven&apos;t found it yet, Keep looking. Don&apos;t settle. As with
             all matters of the heart, you&apos;ll know when you find it
           </p>
-          <button className="btn-outline btn-info btn">Get Started</button>
+          <button className="btn-primary btn">Get Started</button>
         </div>
         <div className="flex w-full justify-center gap-5 ">
           <a

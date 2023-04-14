@@ -22,6 +22,7 @@ specifiers:
   lucide-react: ^0.144.0
   next: ^13.2.4
   next-auth: ^4.21.0
+  next-themes: ^0.2.1
   postcss: ^8.4.21
   prettier: ^2.8.6
   prettier-plugin-tailwindcss: ^0.2.6
@@ -45,6 +46,7 @@ dependencies:
   lucide-react: 0.144.0_react@18.2.0
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
+  next-themes: 0.2.1_yucv4tfv7v7nrkw2uguegj6e7e
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   superjson: 1.12.2
@@ -2023,6 +2025,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
+    dev: false
+
+  /next-themes/0.2.1_yucv4tfv7v7nrkw2uguegj6e7e:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.3.0_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next/13.3.0_biqbaboplfbrettd7655fr4n2y:
