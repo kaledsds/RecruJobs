@@ -1,26 +1,26 @@
 export const navItem = [
   {
-    id: "1",
+    id: "home",
     name: "Home",
     href: "/",
   },
   {
-    id: "2",
+    id: "about",
     name: "About",
     href: "#about",
   },
   {
-    id: "3",
+    id: "service",
     name: "Services",
-    href: "#services",
+    href: "#service",
   },
   {
-    id: "4",
+    id: "hiw",
     name: "HIW",
     href: "#hiw",
   },
   {
-    id: "5",
+    id: "contact",
     name: "Contact",
     href: "#contact",
   },

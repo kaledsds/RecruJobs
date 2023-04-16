@@ -1,10 +1,19 @@
 import Link from "next/link";
 import { navItem } from "~/config/main-page-config";
+import useScroll from "~/hooks/useScroll";
 import ThemeToggler from "../theme-toggler";
 
 const Navbar: React.FC = () => {
+  const scrollPosition = useScroll();
+
   return (
-    <header className="navbar fixed left-0 top-0 z-10 bg-base-200 bg-transparent px-24 py-4">
+    <header
+      className={
+        scrollPosition === 0
+          ? "navbar fixed left-0 top-0 z-10 bg-base-200 bg-transparent px-24 py-4"
+          : "navbar fixed left-0 top-0 z-10 bg-secondary-content px-24 py-4"
+      }
+    >
       <div className="flex-1">
         <Link href="/" className="btn-ghost btn text-xl normal-case">
           RecruJobs

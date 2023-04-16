@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="hero relative min-h-screen text-center ">
+    <section id="home" className="hero relative min-h-screen text-center ">
       <div className="flex max-w-[900px] flex-col gap-12">
         <div className="space-y-4 pt-24">
           <h1 className="text-6xl font-bold">Hi,Welcome to RecruJobs</h1>
