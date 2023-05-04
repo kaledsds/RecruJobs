@@ -2,30 +2,27 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { navItem } from "~/config/main-page-config";
-import useScroll from "~/hooks/useScroll";
 import ThemeToggler from "../theme-toggler";
 import Spinner from "./Spinner";
 
 const Navbar: React.FC = () => {
-  const scrollPosition = useScroll();
   const { data: session, status } = useSession();
 
   return (
-    <header
-      className={
-        scrollPosition === 0
-          ? "navbar fixed right-0 top-0 z-10 flex w-[80%] items-center justify-between bg-base-200 bg-transparent px-24 py-4"
-          : "navbar fixed right-0 top-0 z-10 flex w-[80%] items-center justify-between bg-secondary-content px-24 py-4"
-      }
-    >
+    <header className="navbar fixed right-0 top-0 z-10 flex w-[100%] items-center justify-between bg-base-300 px-8 py-4 shadow-md">
+      <div className="flex-1">
+        <Link href="/" className="btn-ghost btn text-xl normal-case">
+          RecruJobs
+        </Link>
+      </div>
       <div className="form-control w-[40%]">
         <div className="input-group w-full ">
           <input
             type="text"
             placeholder="Search…"
-            className="input-bordered input w-full"
+            className="input-bordered input w-full border-r-0 border-neutral-content"
           />
-          <button className="fo btn-square btn ">
+          <button className="fo btn-square btn border-l-0 border-neutral-content bg-transparent">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -43,11 +40,6 @@ const Navbar: React.FC = () => {
           </button>
         </div>
       </div>
-      {/* <div className="flex-1">
-        <Link href="/" className="btn-ghost btn text-xl normal-case">
-          RecruJobs
-        </Link>
-      </div> */}
       <nav className="mx-8 flex-none">
         {status == "loading" && (
           <div>
@@ -80,7 +72,7 @@ const Navbar: React.FC = () => {
             </button>
 
             <span className="hidden text-right lg:block">
-              <span className="block text-sm font-medium text-black dark:text-white">
+              <span className="block text-sm font-medium">
                 {session?.user.name}
               </span>
               <span className="block text-xs">UX Designer</span>

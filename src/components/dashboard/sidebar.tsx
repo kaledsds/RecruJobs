@@ -1,16 +1,8 @@
-import Link from "next/link";
-
 const Sidebar: React.FC = () => {
   return (
-    <aside className="dark:bg-boxdark fixed  left-0 top-0 z-50 flex h-screen w-[20%] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0 ">
-      <div className="py-5.5 lg:py-6.5 flex items-center justify-between gap-2 px-6">
-        <Link href="/" className="btn-ghost btn text-xl normal-case">
-          RecruJobs
-        </Link>
-      </div>
-
+    <aside className="dark:bg-boxdark fixed left-0 top-0 flex h-screen w-[20%] flex-col overflow-y-hidden border-r-2 border-r-neutral-content bg-base-300 duration-300 ease-linear lg:static lg:translate-x-0 ">
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-        <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+        <nav className="mt-5 px-4 py-4 pt-24 lg:mt-9 lg:px-6">
           <div>
             <h3 className="text-bodydark2 mb-4 ml-4 text-sm font-semibold">
               MENU
