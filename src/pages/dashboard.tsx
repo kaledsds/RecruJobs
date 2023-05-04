@@ -1,8 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getServerSession } from "next-auth";
 import Head from "next/head";
-import Navbar from "~/components/dashboard/navbar";
-import Sidebar from "~/components/dashboard/sidebar";
+import DashboardLayout from "~/layouts/dashboard-layout";
 import { authOptions } from "~/server/auth";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -26,10 +25,53 @@ const Home: NextPage = () => {
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <Sidebar />
-        <Navbar />
-      </div>
+      <>
+        <DashboardLayout>
+          {
+            <main>
+              <div className="flex w-full flex-col">
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+                <div className="divider"></div>
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+              </div>
+
+              <div className="flex w-full flex-col">
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+                <div className="divider"></div>
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+              </div>
+
+              <div className="flex w-full flex-col">
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+                <div className="divider"></div>
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+              </div>
+
+              <div className="flex w-full flex-col">
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+                <div className="divider"></div>
+                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
+                  content
+                </div>
+              </div>
+            </main>
+          }
+        </DashboardLayout>
+      </>
     </>
   );
 };

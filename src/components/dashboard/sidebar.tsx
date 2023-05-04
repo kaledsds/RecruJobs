@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="dark:bg-boxdark absolute left-0 top-0 z-50 flex h-screen w-[20%] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0">
+    <aside className="dark:bg-boxdark fixed  left-0 top-0 z-50 flex h-screen w-[20%] flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0 ">
       <div className="py-5.5 lg:py-6.5 flex items-center justify-between gap-2 px-6">
         <Link href="/" className="btn-ghost btn text-xl normal-case">
           RecruJobs
