@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const { data: session, status } = useSession();
 
   return (
-    <header className="navbar fixed right-0 top-0 z-10 flex w-[100%] items-center justify-between bg-base-300 px-8 py-4 shadow-md">
+    <header className="navbar fixed right-0 top-0 z-10 flex w-[100%] items-center justify-between bg-base-300 px-8 py-2 shadow-md">
       <div className="flex-1">
         <Link href="/" className="btn-ghost btn text-xl normal-case">
           RecruJobs
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
           <input
             type="text"
             placeholder="Search…"
-            className="input-bordered input w-full border-r-0 border-neutral-content"
+            className="input-bordered input w-full border-r-0 border-neutral-content focus:outline-none"
           />
           <button className="fo btn-square btn border-l-0 border-neutral-content bg-transparent">
             <svg
@@ -92,7 +92,7 @@ const Navbar: React.FC = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+                className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow-md"
               >
                 <li>
                   <a className="justify-between">

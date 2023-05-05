@@ -29,44 +29,22 @@ const Home: NextPage = () => {
         <DashboardLayout>
           {
             <main>
-              <div className="flex w-full flex-col">
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
+              <div className="flex h-screen flex-col">
+                <div className="card rounded-box grid h-auto place-items-center bg-base-300 px-4 py-4">
+                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
+                    content
+                  </div>
+                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
+                    content
+                  </div>
+                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
+                    content
+                  </div>
+                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
+                    content
+                  </div>
                 </div>
-                <div className="divider"></div>
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
-              </div>
-
-              <div className="flex w-full flex-col">
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
-                <div className="divider"></div>
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
-              </div>
-
-              <div className="flex w-full flex-col">
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
-                <div className="divider"></div>
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
-              </div>
-
-              <div className="flex w-full flex-col">
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
-                <div className="divider"></div>
-                <div className="card rounded-box grid h-20 place-items-center bg-base-300">
-                  content
-                </div>
+                {/* <div className="divider"></div> */}
               </div>
             </main>
           }
