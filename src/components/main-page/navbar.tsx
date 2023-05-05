@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
       className={
         scrollPosition === 0
           ? "navbar fixed left-0 top-0 z-10 bg-base-200 bg-transparent px-24 py-4"
-          : "navbar fixed left-0 top-0 z-10 bg-secondary-content px-24 py-4"
+          : "navbar fixed left-0 top-0 z-10 bg-base-300 px-24 py-4 shadow-md"
       }
     >
       <div className="flex-1">

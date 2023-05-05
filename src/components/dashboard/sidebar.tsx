@@ -7,7 +7,39 @@ const Sidebar: React.FC = () => {
             <h3 className="text-bodydark2 mb-4 ml-4 text-sm font-semibold">
               MENU
             </h3>
-            <ul className="mb-6 flex flex-col gap-1.5"></ul>
+            <ul className="mb-6 flex flex-col gap-1.5">
+              <ul className="menu rounded-box w-full bg-base-100 p-2">
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+                <li>
+                  <a>Item 3</a>
+                </li>
+              </ul>
+              <ul className="menu rounded-box w-full bg-base-100 p-2">
+                <li className="menu-title">
+                  <span>Category</span>
+                </li>
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+                <li className="menu-title">
+                  <span>Category</span>
+                </li>
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+              </ul>
+            </ul>
           </div>
         </nav>
       </div>

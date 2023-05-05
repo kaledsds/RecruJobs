@@ -7,7 +7,7 @@ const SigninPage: React.FC = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="dark:bg-dark mx-auto max-w-[500px] rounded-md bg-primary bg-opacity-5 px-6 py-10 sm:p-[60px]">
-              <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
+              <h3 className="text-body-color mb-3 text-center text-2xl font-bold sm:text-3xl">
                 Sign in to your account
               </h3>
               <p className="text-body-color mb-11 text-center text-base font-medium">
@@ -93,7 +93,7 @@ const GoogleAuth: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <button
-        className="text-body-color shadow-one dark:text-body-color dark:shadow-signUp flex w-full items-center justify-center rounded-md bg-white p-3 text-base font-medium hover:text-primary dark:bg-[#242B51] dark:hover:text-white"
+        className="shadow-one flex w-full items-center justify-center rounded-md bg-base-100 p-3 text-base font-medium hover:bg-base-300"
         onClick={() =>
           void signIn("google", {
             callbackUrl: `${window.location.origin}/dashboard`,
@@ -143,7 +143,7 @@ const FacebookAuth: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <button
-        className="text-body-color shadow-one dark:text-body-color dark:shadow-signUp flex w-full items-center justify-center rounded-md bg-white p-3 text-base font-medium hover:text-primary dark:bg-[#242B51] dark:hover:text-white"
+        className="shadow-one flex  w-full items-center justify-center rounded-md bg-base-100 p-3 text-base font-medium hover:bg-base-300"
         onClick={() =>
           void signIn("facebook", {
             callbackUrl: `${window.location.origin}/dashboard`,
