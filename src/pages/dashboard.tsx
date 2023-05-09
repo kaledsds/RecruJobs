@@ -1,6 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getServerSession } from "next-auth";
 import Head from "next/head";
+import Recommended from "~/components/dashboard/jobs/recommended";
+import SideCard from "~/components/dashboard/side-card";
 import DashboardLayout from "~/layouts/dashboard-layout";
 import { authOptions } from "~/server/auth";
 
@@ -27,27 +29,12 @@ const Home: NextPage = () => {
       </Head>
       <>
         <DashboardLayout>
-          {
-            <main>
-              <div className="flex h-screen flex-col">
-                <div className="card rounded-box grid h-auto place-items-center bg-base-300 px-4 py-4">
-                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
-                    content
-                  </div>
-                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
-                    content
-                  </div>
-                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
-                    content
-                  </div>
-                  <div className="card rounded-box grid h-20 place-items-center bg-base-100 px-4 py-4">
-                    content
-                  </div>
-                </div>
-                {/* <div className="divider"></div> */}
-              </div>
-            </main>
-          }
+          <main className="flex">
+            <div className="card rounded-box mr-4 grid h-full flex-grow bg-base-300 px-4 py-4">
+              <Recommended />
+            </div>
+            <SideCard />
+          </main>
         </DashboardLayout>
       </>
     </>

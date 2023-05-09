@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { createJobInputSchema } from "~/validations/createJobInput.schema";
-import { deleteJobInputSchema } from "~/validations/deleteJobInput.schema";
+import { JobIdInputSchema } from "~/validations/JobIdInput.schema";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const jobsRouter = createTRPCRouter({
@@ -12,6 +12,19 @@ export const jobsRouter = createTRPCRouter({
     });
     return { jobs };
   }),
+  getJobById: publicProcedure
+    .input(JobIdInputSchema)
+    .query(async ({ ctx, input }) => {
+      const job = await ctx.prisma.job.findFirst({
+        include: {
+          user: true,
+        },
+        where: {
+          id: input.id,
+        },
+      });
+      return { job };
+    }),
   createJob: protectedProcedure
     .input(createJobInputSchema)
     .mutation(async ({ ctx, input }) => {
@@ -46,7 +59,7 @@ export const jobsRouter = createTRPCRouter({
       return { job };
     }),
   deleteJob: protectedProcedure
-    .input(deleteJobInputSchema)
+    .input(JobIdInputSchema)
     .mutation(async ({ ctx, input }) => {
       const { id } = input;
       const job = await ctx.prisma.job.findFirst({

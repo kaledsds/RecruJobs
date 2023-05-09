@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const deleteJobInputSchema = z.object({
+export const JobIdInputSchema = z.object({
   id: z
     .string({
       required_error: "Job id is required!",

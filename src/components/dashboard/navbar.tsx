@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
               <span className="block text-sm font-medium">
                 {session?.user.name}
               </span>
-              <span className="block text-xs">UX Designer</span>
+              <span className="block text-xs">Web Developer</span>
             </span>
 
             <div className="dropdown-end dropdown online avatar">
@@ -92,7 +92,7 @@ const Navbar: React.FC = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow-md"
+                className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-200 p-2 shadow-md"
               >
                 <li>
                   <a className="justify-between">
