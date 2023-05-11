@@ -45,7 +45,7 @@ export const createJobInputSchema = z.object({
     .max(20, "Job title must contain at most 20 character(s)"),
   lastdate: z
     .string({
-      required_error: "Blog lastdate is required!",
+      required_error: "job lastdate is required!",
     })
     .min(3, "Job title must contain at least 3 character(s)")
     .max(20, "Job title must contain at most 20 character(s)"),
