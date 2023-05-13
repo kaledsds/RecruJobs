@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
                   <span>Posts</span>
                 </li>
                 <li>
-                  <Link href="/recruite">
+                  <Link href="/myjobs">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
