@@ -3,6 +3,7 @@ import type { FC } from "react";
 import { useSession } from "next-auth/react";
 import React from "react";
 import Image from "next/image";
+import { api } from "~/utils/api";
 
 interface JobProps {
   job: Job;
@@ -10,10 +11,14 @@ interface JobProps {
 
 const MyjobPost: FC<JobProps> = ({ job }) => {
   const { data: session } = useSession();
+  const apiCtx = api.useContext();
+  const deleteJob = api.jobs.deleteJob.useMutation({
+    onSuccess: () => apiCtx.jobs.getUserJobs.invalidate(),
+  });
 
   return (
     <>
-      <div className="card w-full bg-base-200 shadow-md">
+      <div className="card w-full bg-base-300 shadow-md">
         <div className="card-body gap-5">
           <div className="flex items-center justify-start gap-3">
             <Image
@@ -40,6 +45,14 @@ const MyjobPost: FC<JobProps> = ({ job }) => {
               Salary: {job.salary}
             </span>
           </p>
+          <button
+            onClick={() => {
+              deleteJob.mutate({ id: job.id });
+            }}
+            className="btn-primary btn"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </>

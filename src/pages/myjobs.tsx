@@ -26,11 +26,12 @@ const MyJobs: NextPage = () => {
   return (
     <>
       <DashboardLayout>
-        <div className="flex gap-3"></div>
-        <Recruite />
-        {userJobs?.jobs.map((job) => (
-          <MyjobPost key={job.id} job={job} />
-        ))}
+        <div className="flex flex-col gap-3">
+          <Recruite />
+          {userJobs?.jobs.map((job) => (
+            <MyjobPost key={job.id} job={job} />
+          ))}
+        </div>
       </DashboardLayout>
     </>
   );

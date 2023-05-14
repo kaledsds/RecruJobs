@@ -22,7 +22,7 @@ const Recruite = () => {
   const createJobMutation = api.jobs.createJob.useMutation({
     onSuccess: async () => {
       reset();
-      await ctx.jobs.getJobs.invalidate();
+      await ctx.jobs.getUserJobs.invalidate();
       setSuccessMsg(true);
     },
     onError: () => {
@@ -62,6 +62,11 @@ const Recruite = () => {
       <div className="modal">
         <div className="modal-box relative max-w-screen-lg ">
           <label
+            onClick={() => {
+              setSuccessMsg(false);
+              SetErrorMsg(false);
+              reset();
+            }}
             htmlFor="my-modal-3"
             className="btn-sm btn-circle btn absolute right-2 top-2"
           >
@@ -92,7 +97,7 @@ const Recruite = () => {
                   </div>
                 </div>
               ) : (
-                <p className="p-4">not yet</p>
+                <p className="text-xl font-bold">Add your job post</p>
               )}
             </label>
 
