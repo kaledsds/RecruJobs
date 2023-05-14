@@ -30,11 +30,6 @@ const Recruite = () => {
     },
   });
 
-  const onabort = () => {
-    setSuccessMsg(false);
-    SetErrorMsg(true);
-    reset();
-  };
   const onSubmit = (data: FormData) => {
     createJobMutation.mutate(data);
   };
@@ -66,12 +61,12 @@ const Recruite = () => {
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative max-w-screen-lg ">
-          <button
-            onClick={handleSubmit(onabort)}
+          <label
+            htmlFor="my-modal-3"
             className="btn-sm btn-circle btn absolute right-2 top-2"
           >
-            <label htmlFor="my-modal-3">✕</label>
-          </button>
+            ✕
+          </label>
           <form
             className="rounded-box flex w-full flex-col bg-base-100 p-3"
             onSubmit={handleSubmit(onSubmit)}
