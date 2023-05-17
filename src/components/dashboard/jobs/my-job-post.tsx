@@ -45,14 +45,37 @@ const MyjobPost: FC<JobProps> = ({ job }) => {
               Salary: {job.salary}
             </span>
           </p>
-          <button
-            onClick={() => {
-              deleteJob.mutate({ id: job.id });
-            }}
-            className="btn-primary btn"
-          >
-            Delete
-          </button>
+          <label htmlFor={"my-modal" && job.id} className="btn-primary btn">
+            Delete!
+          </label>
+          <input
+            type="checkbox"
+            id={"my-modal" && job.id}
+            className="modal-toggle"
+          />
+          <div className="modal">
+            <div className="modal-box">
+              <h3 className="text-lg font-bold">
+                Are you sure that you wanna delete this Post!
+              </h3>
+              <p className="py-4">
+                Once you do you can not retrieve any info from it!
+              </p>
+              <div className="modal-action">
+                <button
+                  onClick={() => {
+                    deleteJob.mutate({ id: job.id });
+                  }}
+                  className="btn-primary btn"
+                >
+                  Delete!
+                </button>
+                <label htmlFor={"my-modal" && job.id} className="btn">
+                  cancel
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

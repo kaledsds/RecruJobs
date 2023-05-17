@@ -23,6 +23,15 @@ model Job {
     userId      String
 }
 
+model Resume {
+    id        String   @id @default(cuid())
+    url       String
+    owner     User     @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    userId    String   @unique
+}
+
 enum Status {
     pending
     accepted
@@ -77,6 +86,7 @@ model User {
     jobs          Job[]
     requests      JobRequest[]
     createdAt     DateTime     @default(now())
+    resume        Resume?
 }
 
 model VerificationToken {
