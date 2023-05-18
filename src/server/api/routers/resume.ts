@@ -1,9 +1,23 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const resumeRouter = createTRPCRouter({
+  getResumeByUserId: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const resume = await ctx.prisma.resume.findFirst({
+        where: {
+          userId: input.id,
+        },
+      });
+      return { resume };
+    }),
   getResume: protectedProcedure.query(async ({ ctx }) => {
     const resume = await ctx.prisma.resume.findFirst({
       where: {

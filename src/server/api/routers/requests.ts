@@ -1,32 +1,33 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const jobRequestsRouter = createTRPCRouter({
-  getRequestsByJob: protectedProcedure
-    .input(
-      z.object({
-        id: z.string({ required_error: "job id is required" }),
-      })
-    )
-    .query(async ({ ctx, input }) => {
-      const { id } = input;
-      const job = await ctx.prisma.job.findFirst({
-        where: {
-          id,
-        },
-        include: {
-          requests: true,
-        },
-      });
-      if (!job) {
-        throw new TRPCError({ code: "NOT_FOUND" });
-      }
-      if (job.userId !== ctx.session.user.id) {
-        throw new TRPCError({ code: "FORBIDDEN" });
-      }
-      return { requests: job.requests };
-    }),
+  getRequestsByJob: protectedProcedure.query(async ({ ctx }) => {
+    const { id } = { id: ctx.session.user.id };
+    const job = await ctx.prisma.job.findFirst({
+      where: {
+        userId: id,
+        // requests: {
+        //   none: {
+        //     status: {
+        //       equals: "declined",
+        //     },
+        //   },
+        // },
+      },
+      include: {
+        requests: true,
+      },
+    });
+    if (!job) {
+      throw new TRPCError({ code: "NOT_FOUND" });
+    }
+    if (job.userId !== ctx.session.user.id) {
+      throw new TRPCError({ code: "FORBIDDEN" });
+    }
+    return { requests: job.requests };
+  }),
   getRequestByUser: protectedProcedure.query(async ({ ctx }) => {
     const { id } = ctx.session.user;
     const requests = await ctx.prisma.jobRequest.findMany({
@@ -36,10 +37,29 @@ export const jobRequestsRouter = createTRPCRouter({
     });
     return { requests };
   }),
+  editJobRequest: publicProcedure
+    .input(
+      z.object({
+        id: z.string({ required_error: "job request id is required" }),
+        status: z.enum(["pending", "accepted", "declined"]),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { id, status } = input;
+      const jobRequest = await ctx.prisma.jobRequest.update({
+        where: {
+          id: id,
+        },
+        data: {
+          status: status,
+        },
+      });
+      return { jobRequest };
+    }),
   createJobRequest: protectedProcedure
     .input(
       z.object({
-        id: z.string({ required_error: "job id is required" }),
+        id: z.string({ required_error: "job request id is required" }),
         status: z.enum(["pending", "accepted", "declined"]),
       })
     )
@@ -73,7 +93,6 @@ export const jobRequestsRouter = createTRPCRouter({
       const jobRequest = await ctx.prisma.jobRequest.findFirst({
         where: {
           id,
-          status: "declined",
         },
         include: {
           job: true,

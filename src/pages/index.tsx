@@ -11,8 +11,6 @@ import { authOptions } from "~/server/auth";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-  console.log(session);
-
   if (session) {
     return {
       redirect: {
