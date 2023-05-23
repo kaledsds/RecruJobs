@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getServerSession } from "next-auth";
 import React from "react";
-import JobPostRequests from "~/components/dashboard/requests/job-requests";
+import RequestsReply from "~/components/dashboard/requests/requests-reply";
 import DashboardLayout from "~/layouts/dashboard-layout";
 import { authOptions } from "~/server/auth";
 
@@ -18,14 +18,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: {} };
 };
 
-const Requests: NextPage = () => {
+const Replys: NextPage = () => {
   return (
     <>
       <DashboardLayout>
-        <JobPostRequests />
+        <RequestsReply />
       </DashboardLayout>
     </>
   );
 };
 
-export default Requests;
+export default Replys;

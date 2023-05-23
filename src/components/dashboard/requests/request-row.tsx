@@ -1,22 +1,18 @@
-import type { JobRequest } from "@prisma/client";
+import type { Job, JobRequest, Resume, User } from "@prisma/client";
 import Image from "next/image";
 import { type FC } from "react";
 import { api } from "~/utils/api";
 
 interface RequestProps {
-  request: JobRequest;
+  request: JobRequest & {
+    job: Job;
+    user: User & {
+      resume: Resume | null;
+    };
+  };
 }
 
 const RequestRow: FC<RequestProps> = ({ request }) => {
-  const { data: requestUser } = api.users.getUserById.useQuery({
-    id: request.userId,
-  });
-  const { data: resume } = api.resume.getResumeByUserId.useQuery({
-    id: request.userId,
-  });
-  const { data: job } = api.jobs.getJobById.useQuery({
-    id: request.jobId,
-  });
   const ctx = api.useContext();
   const setStatus = api.jobRequests.editJobRequest.useMutation({
     onSuccess: async () => {
@@ -31,24 +27,24 @@ const RequestRow: FC<RequestProps> = ({ request }) => {
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
               <Image
-                src={requestUser?.user?.image as string}
-                alt={requestUser?.user?.name as string}
+                src={request.user.image || ""}
+                alt={request.user.name || ""}
                 width={50}
                 height={50}
               />
             </div>
           </div>
           <div>
-            <div className="font-bold">{requestUser?.user?.name}</div>
-            <div className="text-sm opacity-50">{requestUser?.user?.email}</div>
+            <div className="font-bold">{request.user.name}</div>
+            <div className="text-sm opacity-50">{request.user?.email}</div>
           </div>
         </div>
       </td>
-      <td>{job?.job?.title}</td>
+      <td>{request.job.title}</td>
       <td>{request.status}</td>
       <th>
         <a
-          href={resume?.resume?.url}
+          href={request.user.resume?.url}
           target="_blank"
           className="p-0 font-semibold hover:bg-transparent hover:text-primary-focus"
         >

@@ -28,10 +28,10 @@ const MyjobPost: FC<JobProps> = ({ job }) => {
               width={50}
               height={50}
             />
-            <p>
+            <div>
               <h2 className="card-title">{session?.user.name}</h2>
-              is looking for
-            </p>
+              <p>is looking for</p>
+            </div>
           </div>
           <h2 className="card-title font-bold text-primary">{job.title}</h2>
           <p>

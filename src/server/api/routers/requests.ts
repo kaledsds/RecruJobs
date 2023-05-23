@@ -3,21 +3,40 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const jobRequestsRouter = createTRPCRouter({
+  checkRequest: protectedProcedure
+    .input(
+      z.object({
+        id: z.string({ required_error: "request id is required" }).cuid(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const job = await ctx.prisma.jobRequest.findFirst({
+        where: {
+          AND: [{ jobId: input.id }, { userId: ctx.session.user.id }],
+        },
+      });
+      if (!job) {
+        return true;
+      }
+      return false;
+    }),
   getRequestsByJob: protectedProcedure.query(async ({ ctx }) => {
     const { id } = { id: ctx.session.user.id };
     const job = await ctx.prisma.job.findFirst({
       where: {
         userId: id,
-        // requests: {
-        //   none: {
-        //     status: {
-        //       equals: "declined",
-        //     },
-        //   },
-        // },
       },
       include: {
-        requests: true,
+        requests: {
+          include: {
+            user: {
+              include: {
+                resume: true,
+              },
+            },
+            job: true,
+          },
+        },
       },
     });
     if (!job) {
@@ -33,6 +52,13 @@ export const jobRequestsRouter = createTRPCRouter({
     const requests = await ctx.prisma.jobRequest.findMany({
       where: {
         userId: id,
+      },
+      include: {
+        job: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
     return { requests };
@@ -60,17 +86,15 @@ export const jobRequestsRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.string({ required_error: "job request id is required" }),
-        status: z.enum(["pending", "accepted", "declined"]),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, status } = input;
+      const { id } = input;
       const jobRequest = await ctx.prisma.jobRequest.create({
         data: {
-          status,
           user: {
             connect: {
-              id,
+              id: ctx.session.user.id,
             },
           },
           job: {
@@ -80,12 +104,16 @@ export const jobRequestsRouter = createTRPCRouter({
           },
         },
       });
+      if (!jobRequest) {
+        throw new TRPCError({ code: "BAD_REQUEST" });
+      }
       return { jobRequest };
     }),
+
   deletJobRequest: protectedProcedure
     .input(
       z.object({
-        id: z.string({ required_error: "job id is required" }).cuid(),
+        id: z.string({ required_error: "request id is required" }).cuid(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -101,10 +129,7 @@ export const jobRequestsRouter = createTRPCRouter({
       if (!jobRequest) {
         throw new TRPCError({ code: "NOT_FOUND" });
       }
-      if (
-        jobRequest.userId !== ctx.session.user.id ||
-        jobRequest.job.userId !== ctx.session.user.id
-      ) {
+      if (jobRequest.userId !== ctx.session.user.id) {
         throw new TRPCError({ code: "FORBIDDEN" });
       }
       return await ctx.prisma.jobRequest.delete({

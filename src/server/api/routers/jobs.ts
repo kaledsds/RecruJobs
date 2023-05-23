@@ -1,4 +1,5 @@
 import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 import { createJobInputSchema } from "~/validations/createJobInput.schema";
 import { JobIdInputSchema } from "~/validations/JobIdInput.schema";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
@@ -13,8 +14,11 @@ export const jobsRouter = createTRPCRouter({
     return { jobs };
   }),
   getJobById: publicProcedure
-    .input(JobIdInputSchema)
+    .input(z.object({ id: z.string().optional() }))
     .query(async ({ ctx, input }) => {
+      if (!input.id) {
+        return null;
+      }
       const job = await ctx.prisma.job.findFirst({
         include: {
           user: true,
@@ -23,7 +27,7 @@ export const jobsRouter = createTRPCRouter({
           id: input.id,
         },
       });
-      return { job };
+      return job;
     }),
   getUserJobs: protectedProcedure.query(async ({ ctx }) => {
     const jobs = await ctx.prisma.job.findMany({

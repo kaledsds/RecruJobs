@@ -32,10 +32,10 @@ const JobCard: React.FC<JobCardProps> = ({
               width={50}
               height={50}
             />
-            <p>
+            <div>
               <h2 className="card-title">{user}</h2>
-              is looking for
-            </p>
+              <p>is looking for</p>
+            </div>
           </div>
           <h2 className="card-title font-bold text-primary">{title}</h2>
           <p>

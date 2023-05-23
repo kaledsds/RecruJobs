@@ -5,13 +5,16 @@ import DashboardLayout from "~/layouts/dashboard-layout";
 import { api } from "~/utils/api";
 import Link from "next/link";
 import Recommended from "~/components/dashboard/jobs/recommended";
+import { useSession } from "next-auth/react";
+import JobApply from "~/components/dashboard/requests/job-apply";
 
 const Jobs: NextPage = () => {
-  const router = useRouter();
-  const jobData = api.jobs.getJobById.useQuery({
-    id: router.query.id as string,
+  const { query } = useRouter();
+  const { data: session } = useSession();
+
+  const { data: job } = api.jobs.getJobById.useQuery({
+    id: query.id as string,
   });
-  const job = jobData.data?.job;
 
   return (
     <>
@@ -32,7 +35,7 @@ const Jobs: NextPage = () => {
                   {job?.title}
                 </h1>
                 <p className="mr-1 flex items-center justify-end text-slate-500">
-                  {jobData.data?.job?.createdAt.toLocaleString()}
+                  {job?.createdAt.toLocaleString()}
                 </p>
                 <Link
                   href="/dashboard"
@@ -67,9 +70,9 @@ const Jobs: NextPage = () => {
               <h1 className="card-title"> About the job </h1>
               <p>not yet</p>
               <div className="card-actions justify-end">
-                <Link href="" className="btn-primary btn">
-                  Apply
-                </Link>
+                {job?.userId !== session?.user.id && job?.id && (
+                  <JobApply jobId={job.id} />
+                )}
               </div>
             </div>
           </div>

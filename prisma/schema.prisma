@@ -40,12 +40,14 @@ enum Status {
 
 model JobRequest {
     id        String   @id @default(cuid())
-    status    Status   @default(pending)
+    status    Status?  @default(pending)
     createdAt DateTime @default(now())
     job       Job      @relation(fields: [jobId], references: [id])
     jobId     String
     user      User     @relation(fields: [userId], references: [id])
     userId    String
+
+    @@unique([userId, jobId])
 }
 
 // Necessary for Next auth

@@ -1,9 +1,9 @@
 import React from "react";
 import { api } from "~/utils/api";
-import RequestRow from "./request-row";
+import ReplyRow from "./reply-row";
 
-const JobPostRequests = () => {
-  const { data: JobRequests } = api.jobRequests.getRequestsByJob.useQuery();
+const RequestsReply = () => {
+  const { data: JobRequests } = api.jobRequests.getRequestByUser.useQuery();
 
   if (!JobRequests) {
     return null;
@@ -15,22 +15,18 @@ const JobPostRequests = () => {
         {/* head */}
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Requesting on</th>
+            <th>Recruter Name</th>
+            <th>Your Request on</th>
             <th>request status</th>
-            <th>resume</th>
             <th>
-              <span className="px-4">action</span>
+              <span className="flex items-center justify-center ">action</span>
             </th>
           </tr>
         </thead>
         <tbody>
-          {JobRequests.requests.map(
-            (request) =>
-              request.status !== "declined" && (
-                <RequestRow key={request.id} request={request} />
-              )
-          )}
+          {JobRequests.requests.map((request) => (
+            <ReplyRow key={request.id} request={request} />
+          ))}
         </tbody>
         {/* foot */}
         <tfoot>
@@ -38,9 +34,8 @@ const JobPostRequests = () => {
             <th>nav</th>
             <th></th>
             <th></th>
-            <th></th>
             <th>
-              <span className="px-4">page</span>
+              <span className="flex justify-end px-4">page</span>
             </th>
           </tr>
         </tfoot>
@@ -49,4 +44,4 @@ const JobPostRequests = () => {
   );
 };
 
-export default JobPostRequests;
+export default RequestsReply;
