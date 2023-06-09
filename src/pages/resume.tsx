@@ -1,10 +1,24 @@
 import { ArrowUpRight, Trash2 } from "lucide-react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
+import { getServerSession } from "next-auth";
 import AddResume from "~/components/dashboard/jobs/add-resume";
 
 import DashboardLayout from "~/layouts/dashboard-layout";
+import { authOptions } from "~/server/auth";
 import { api } from "~/utils/api";
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
+};
 const Resume: NextPage = () => {
   const { data: resume, isLoading } = api.resume.getResume.useQuery();
   if (isLoading) {

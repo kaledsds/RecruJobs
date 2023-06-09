@@ -30,7 +30,7 @@ const JobApply: React.FC<JobApplyProps> = ({ jobId }) => {
     );
   }
   return (
-    <span className="rounded-box flex items-center justify-center border border-success p-2 pb-3 text-success">
+    <span className="flex items-center justify-center rounded-lg border border-success p-2 pb-3 text-success">
       Applayed
     </span>
   );

@@ -23,6 +23,19 @@ model Job {
     userId      String
 }
 
+model JobDetail {
+    id             String          @id @default(cuid())
+    jobposition    String
+    companyname    String
+    type           String
+    salary         String
+    hoursofwork    String
+    location       String
+    createdAt      DateTime        @default(now())
+    updatedAt      DateTime        @updatedAt
+    recruteRequest RecruteRequest?
+}
+
 model Resume {
     id        String   @id @default(cuid())
     url       String
@@ -32,10 +45,34 @@ model Resume {
     userId    String   @unique
 }
 
+model CrewMember {
+    id             String          @id @default(cuid())
+    expertise      String
+    salary         String
+    createdAt      DateTime        @default(now())
+    updatedAt      DateTime        @updatedAt
+    employee       User            @relation(fields: [userId], references: [id])
+    userId         String          @unique
+    recruteRequest RecruteRequest?
+}
+
 enum Status {
     pending
     accepted
     declined
+}
+
+model RecruteRequest {
+    id           String     @id @default(cuid())
+    employer     User       @relation(fields: [userId], references: [id])
+    status       Status?    @default(pending)
+    employee     CrewMember @relation(fields: [crewMemberId], references: [id])
+    jobDetail    JobDetail  @relation(fields: [jobDetailId], references: [id])
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
+    userId       String
+    crewMemberId String     @unique
+    jobDetailId  String     @unique
 }
 
 model JobRequest {
@@ -78,17 +115,19 @@ model Session {
 }
 
 model User {
-    id            String       @id @default(cuid())
-    name          String?
-    email         String?      @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    jobs          Job[]
-    requests      JobRequest[]
-    createdAt     DateTime     @default(now())
-    resume        Resume?
+    id             String           @id @default(cuid())
+    name           String?
+    email          String?          @unique
+    emailVerified  DateTime?
+    image          String?
+    accounts       Account[]
+    sessions       Session[]
+    jobs           Job[]
+    requests       JobRequest[]
+    createdAt      DateTime         @default(now())
+    resume         Resume?
+    crewMember     CrewMember?
+    recruteRequest RecruteRequest[]
 }
 
 model VerificationToken {

@@ -72,6 +72,12 @@ const Sidebar: React.FC = () => {
                     My resume
                   </Link>
                 </li>
+                <li>
+                  <Link href={"/crew-list"}>Crew List</Link>
+                </li>
+                <li>
+                  <Link href={"/join-crew-list"}>Join Crew List</Link>
+                </li>
                 <li className="menu-title">
                   <span>Requests</span>
                 </li>

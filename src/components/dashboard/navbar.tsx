@@ -95,13 +95,9 @@ const Navbar: React.FC = () => {
                 className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-200 p-2 shadow-md"
               >
                 <li>
-                  <a className="justify-between">
+                  <Link href="/profile" className="justify-between">
                     Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
+                  </Link>
                 </li>
                 <li>
                   <a onClick={() => void signOut()}>Sign Out</a>

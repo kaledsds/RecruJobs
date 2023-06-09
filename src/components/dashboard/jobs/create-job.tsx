@@ -40,7 +40,7 @@ const Recruite = () => {
 
   return (
     <>
-      <div className="rounded-box flex items-center justify-between bg-base-200 p-4 shadow-md">
+      <div className="rounded-box flex items-center justify-between bg-base-300 p-4 shadow-md">
         <h1 className="flex-1 text-2xl">Add new job post</h1>
         <label htmlFor="my-modal-3" className="btn flex-none bg-transparent">
           <svg
